@@ -176,6 +176,47 @@
       ></section>
     </main>
 
+    <!-- Modal box -->
+
+    <dialog id="my_modal_2" class="modal">
+  <div class="modal-box space-y-3">
+    <h2 id="modal-title" class="font-extrabold text-[18px]">
+    </h2>
+    <ul id="modal-list-parent" class="flex items-center list-disc p-3 flex-wrap gap-5 list-inside">
+        <li class="list-none"><span id="modal-status" class="inline-block good p-2 rounded-full"></span></li>
+        <li id="modal-list-assignee" class="pl-0"></li>
+        <li id="modal-time" class="pl-0"></li>
+    </ul>
+
+    <div id="bugs">
+
+    </div>
+
+    <p id="modal-desc">
+    </p>
+    <div class="p-6 bg-base-200 flex items-center justify-between">
+        <div class="flex flex-col gap-3 items-start justify-start">
+            <p>
+                Assignee:
+            </p>
+            <h2 class="font-bold" id="modal-assignee">
+                
+            </h2>
+        </div>
+        <div class="flex flex-col gap-3 items-start justify-start">
+            <p>
+                Priority
+            </p>
+            <span id="modal-priority-level">
+                
+            </span>
+        </div>
+    </div>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+
     <script src="scripts/script.js"></script>
   </body>
 </html>
