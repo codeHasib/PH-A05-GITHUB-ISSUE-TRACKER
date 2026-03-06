@@ -26,26 +26,6 @@ if (body.id === "loginPage") {
   });
 }
 
-// structure
-//         <div class="cards">
-//   <div class="borderBottom">
-//     <div>
-//       <div class="image">
-//         <img src="/assets/Open-Status.png" alt="" />
-//       </div>
-//       <div class="rate">
-//         <p>HIGH</p>
-//       </div>
-//     </div>
-//     <h2>Fix navigation menu on mobile devices</h2>
-//     <p>The navigate button is not responsive for the mobile devices</p>
-//     <span>BUG</span>
-//     <span>BUG</span>
-//   </div>
-//   <p>by codeHasib</p>
-//   <p>5/10/2025</p>
-// </div>
-
 // Main page functionality
 if (body.id === "mainPage") {
   const searchInput = document.querySelector("#searchInput");
@@ -53,11 +33,15 @@ if (body.id === "mainPage") {
   const totalIssuesDisplay = document.querySelector("#totalIssues");
   const divParent = document.querySelector("#parentDiv");
 
+  let filterValue = "all";
+
   const filterBtns = document.querySelectorAll(".filterBtn");
   filterBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
       filterBtns.forEach((btn) => btn.classList.remove("active"));
       btn.classList.add("active");
+      filterValue = btn.value;
+      loadAllIssues();
     });
   });
 
@@ -67,8 +51,11 @@ if (body.id === "mainPage") {
     );
     let data = await res.json();
     let issuesArr = data.data;
-    renderIssues(issuesArr);
-    console.log(issuesArr);
+    const openArr = issuesArr.filter(item=> item.status === "open");
+    const closedArr = issuesArr.filter(item=> item.status === "closed");
+    if(filterValue === "all") renderIssues(issuesArr);
+    else if(filterValue === "open") renderIssues(openArr);
+    else if(filterValue === "closed") renderIssues(closedArr);
   }
 
   loadAllIssues();
