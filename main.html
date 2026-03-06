@@ -1,13 +1,222 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Daisy UI & Tailwind Connect-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome Connect -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Default Styles -->
+    <style>
+      * {
+        font-family: "Geist", sans-serif;
+      }
+      .active {
+        background-color: rgb(85, 0, 255);
+        color: white;
+      }
+      .cards {
+        padding: 10px;
+        background-color: white;
+        border-radius: 15px;
+      }
+      .cards div div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .cards .image {
+        padding: 5px;
+        border-radius: 100%;
+        background-color: rgb(170, 238, 170);
+      }
+      .cards .rate {
+        padding: 8px 20px;
+        border-radius: 15px;
+      }
+      .cards h2 {
+        font-weight: bolder;
+        margin: 10px 0px;
+      }
+      .cards p {
+        font-size: 12px;
+        font-weight: light;
+        margin: 10px 0px;
+      }
+      .cards span {
+        display: inline-block;
+        padding: 5px;
+        border-radius: 10px;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+      .borderBottom {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.124);
+      }
+
+      .high {
+        background-color: rgba(251, 134, 134, 0.683);
+        color: red;
+      }
+      .medium {
+        background-color: rgba(255, 217, 0, 0.364);
+        color: goldenrod;
+      }
+      .low {
+        background-color: rgba(128, 128, 128, 0.571);
+        color: rgb(66, 66, 66);
+      }
+    </style>
     <title>GitHub Issue Tracker | Main Page</title>
-</head>
-<body>
-    <h1>
-        This is main page
-    </h1>
-</body>
+  </head>
+  <body id="mainPage" class="bg-base-300 h-screen w-full">
+    <header
+      class="bg-white flex items-center justify-center gap-5 sm:justify-between sm:gap-0 md:gap-0 md:justify-between p-2 flex-wrap mb-12"
+    >
+      <div class="flex items-center justify-center gap-1">
+        <img class="w-10" src="assets/github-logo.png" alt="" />
+        <h2 class="font-bold">GitHub Issues Tracker</h2>
+      </div>
+
+      <div class="flex items-center justify-center gap-2 flex-wrap">
+        <div class="h-full border border-gray-300 p-1.5 rounded-lg">
+          <i class="fa-solid fa-magnifying-glass text-gray-400"></i>
+          <input
+            class="border-none inline-block h-full outline-none"
+            type="text"
+            id="searchInput"
+            placeholder="Search issues..."
+          />
+        </div>
+        <button class="btn btn-primary">
+          <i class="fa-solid fa-plus"></i> Add Task
+        </button>
+      </div>
+    </header>
+
+    <main class="container mx-auto">
+      <section class="bg-white p-4 rounded-lg">
+        <button
+          class="active filterBtn btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl"
+          value="all"
+        >
+          All
+        </button>
+        <button
+          class="filterBtn btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl"
+          value="open"
+        >
+          Open
+        </button>
+        <button
+          class="filterBtn btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl"
+          value="close"
+        >
+          Closed
+        </button>
+      </section>
+      <section
+        class="flex items-center justify-center gap-4 sm:justify-between sm:gap-0 md:gap-0 md:justify-between bg-white mt-6 p-5 flex-wrap rounded-xl"
+      >
+        <div class="flex items-center justify-center gap-3">
+          <div class="p-3 rounded-full bg-violet-200">
+            <img src="assets/Aperture.png" alt="" />
+          </div>
+          <div>
+            <h2 id="totalIssues" class="font-bold">50 Issues</h2>
+            <p class="font-extralight text-[12px]">
+              Track and manage your project issues
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center justify-center gap-4">
+          <div class="flex items-center justify-center gap-2">
+            <div class="w-[10px] h-[10px] rounded-full bg-green-500"></div>
+            <p>Open</p>
+          </div>
+          <div class="flex items-center justify-center gap-2">
+            <div class="w-[10px] h-[10px] rounded-full bg-violet-600"></div>
+            <p>Close</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-2 grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4">
+        <div class="cards">
+          <div class="borderBottom">
+            <div>
+              <div class="image">
+                <img src="/assets/Open-Status.png" alt="" />
+              </div>
+              <div class="rate">
+                <p>HIGH</p>
+              </div>
+            </div>
+            <h2>Fix navigation menu on mobile devices</h2>
+            <p>The navigate button is not responsive for the mobile devices</p>
+            <span>BUG</span>
+            <span>BUG</span>
+          </div>
+          <p>by codeHasib</p>
+          <p>5/10/2025</p>
+        </div>
+        <div class="cards">
+          <div class="borderBottom">
+            <div>
+              <div class="image">
+                <img src="/assets/Open-Status.png" alt="" />
+              </div>
+              <div class="rate">
+                <p>HIGH</p>
+              </div>
+            </div>
+            <h2>Fix navigation menu on mobile devices</h2>
+            <p>The navigate button is not responsive for the mobile devices</p>
+            <span>BUG</span>
+            <span>BUG</span>
+          </div>
+          <p>by codeHasib</p>
+          <p>5/10/2025</p>
+        </div>
+        <div class="cards">
+          <div class="borderBottom">
+            <div>
+              <div class="image">
+                <img src="/assets/Open-Status.png" alt="" />
+              </div>
+              <div class="rate">
+                <p>HIGH</p>
+              </div>
+            </div>
+            <h2>Fix navigation menu on mobile devices</h2>
+            <p>The navigate button is not responsive for the mobile devices</p>
+            <span>BUG</span>
+            <span>BUG</span>
+          </div>
+          <p>by codeHasib</p>
+          <p>5/10/2025</p>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>
