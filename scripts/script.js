@@ -56,6 +56,12 @@ if (body.id === "mainPage") {
     });
   });
 
+  searchInput.addEventListener("input", ()=> {
+    const value = searchInput.value.trim();
+    if (value) loadBySearch(value);
+    else loadAllIssues();
+  });
+
   searchInputBtn.addEventListener("click", () => {
     const value = searchInput.value.trim();
     if (value) loadBySearch(value);
