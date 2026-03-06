@@ -183,7 +183,7 @@ if (body.id === "mainPage") {
     else modalSpanStatus.classList.add("high");
     modalSpanStatus.textContent = obj.status;
     modalSpanStatus.classList.add("rate");
-    modalOpenedBy.textContent = obj.author;
+    modalOpenedBy.textContent = `Opened By ${obj.author}`;
     modalTime.textContent = obj.createdAt.split("T")[0];
     modalDesc.textContent = obj.description;
     modalAssignee.textContent = obj.author;
