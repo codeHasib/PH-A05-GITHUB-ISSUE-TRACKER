@@ -45,6 +45,12 @@ if (body.id === "mainPage") {
     });
   });
 
+  searchInputBtn.addEventListener("click", ()=> {
+    const value = searchInput.value.trim();
+    if(value) loadBySearch(value);
+    else loadAllIssues();
+  });
+
   async function loadAllIssues() {
     let res = await fetch(
       "https://phi-lab-server.vercel.app/api/v1/lab/issues",
@@ -56,6 +62,13 @@ if (body.id === "mainPage") {
     if(filterValue === "all") renderIssues(issuesArr);
     else if(filterValue === "open") renderIssues(openArr);
     else if(filterValue === "closed") renderIssues(closedArr);
+  }
+
+  async function loadBySearch(value) {
+    let res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${value}`);
+    let data = await res.json();
+    let issuesArr = data.data;
+    renderIssues(issuesArr);
   }
 
   loadAllIssues();
