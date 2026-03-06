@@ -120,8 +120,14 @@ if (body.id === "mainPage") {
         let imageDiv = document.createElement("div");
         imageDiv.classList.add("image");
         let image = document.createElement("img");
-        if (item.status === "open") image.src = "./assets/open.png";
-        if (item.status === "closed") image.src = "./assets/close.png";
+        if (item.status === "open") {
+          image.src = "./assets/open.png";
+          cardDiv.style.borderTop = "5px solid lightgreen";
+        } 
+        if (item.status === "closed") {
+          image.src = "./assets/close.png";
+          cardDiv.style.borderTop = "5px solid rgb(243, 111, 111)";
+        } 
         imageDiv.append(image);
         imageAndRateDiv.append(imageDiv);
         let rateDiv = document.createElement("div");
