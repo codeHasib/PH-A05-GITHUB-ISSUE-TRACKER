@@ -126,7 +126,7 @@ if (body.id === "mainPage") {
         } 
         if (item.status === "closed") {
           image.src = "./assets/close.png";
-          cardDiv.style.borderTop = "5px solid rgb(243, 111, 111)";
+          cardDiv.style.borderTop = "5px solid purple";
         } 
         imageDiv.append(image);
         imageAndRateDiv.append(imageDiv);
