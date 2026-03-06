@@ -176,10 +176,12 @@ if (body.id === "mainPage") {
     if (obj.status === "open") modalSpanStatus.classList.add("good");
     else modalSpanStatus.classList.add("high");
     modalSpanStatus.textContent = obj.status;
+    modalSpanStatus.classList.add("rate");
     modalOpenedBy.textContent = obj.author;
     modalTime.textContent = obj.createdAt.split("T")[0];
     modalDesc.textContent = obj.description;
     modalAssignee.textContent = obj.author;
+    modalPriority.classList.add("rate");
     if (obj.priority === "high") modalPriority.classList.add("high");
     else if (obj.priority === "medium") modalPriority.classList.add("medium");
     else modalPriority.classList.add("low");
@@ -188,6 +190,7 @@ if (body.id === "mainPage") {
     obj.labels.forEach((label) => {
       let newLabel = label.toUpperCase();
       let span = document.createElement("span");
+      span.classList.add("rate");
       span.textContent = newLabel;
       span.style.marginRight = "8px";
       if (label === "bug") span.classList.add("high");
